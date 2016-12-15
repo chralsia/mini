@@ -1,0 +1,80 @@
+
+<!doctype html>
+
+
+<html ng-app="phonebook">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Phonebook App</title>
+
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="core.js"></script>
+
+</head>
+
+<body ng-controller="mainController">
+<div class="container">
+    <div class="text-center" style="margin: 40px;">
+        <h2>
+            <span class="alert alert-success text-center">
+                <span ng-show="name">{{name}}, welcome to your phonebook!</span>
+                <span ng-show="!name">Welcome to your phonebook!</span>
+            </span>
+        </h2>
+    </div>
+
+    <div id="note-form" class="row jumbotron">
+        <h4>There are <span class="label label-success">{{ notes.length }}</span>  notes in your phonebook.</h4>
+        <p><span class="label label-default">You may add note here!</span></p>
+        <div class="text-center">
+            <form>
+                <div class="form-group ">
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control input-lg" placeholder="Enter first name" ng-model="formData.firstName">
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control input-lg" placeholder="Enter last name" ng-model="formData.lastName">
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" class="form-control input-lg" placeholder="Enter phone number" ng-model="formData.phone">
+                    </div>
+                    <div class="col-xs-2">
+                        <button type="submit" class="btn btn-success btn-lg" ng-click="createNote()">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div ng-show="notes.length > 0" class="text-center panel panel-info">
+        <div class="row panel-heading">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">First Name</div>
+            <div class="col-xs-2">Last Name</div>
+            <div class="col-xs-4">Phone Number</div>
+            <div class="col-xs-1"></div>
+        </div>
+        <div ng-repeat="note in notes">
+            <div class="row panel-body">
+                <div class="col-xs-1">{{ $index + 1}}</div>
+                <div class="col-xs-2">{{ note.firstName }}</div>
+                <div class="col-xs-2">{{ note.lastName }}</div>
+                <div class="col-xs-4">{{ note.phone }}</div>
+                <div class="col-xs-1">
+                    <button type="submit" class="btn btn-info btn-lg" ng-click="deleteNote(note._id)">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
